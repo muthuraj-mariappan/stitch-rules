@@ -1,8 +1,8 @@
 kind: Rules
 metadata:
-  namespace: cloud-formation-template
+  namespace: git-cloud-formation-template
 spec:
-  - name: "CloudFormation"
+  - name: "git-rule.CloudFormation"
     condition:
       deployedType: aws.cloudformation.DeployedTemplate
     processor:
