@@ -1,6 +1,6 @@
 kind: Macros
 metadata:
-  namespace: tf-k8s-freemarker
+  namespace: tf-k8s-freemarker-feature-2
 spec:
   - name: "k8s.MacroFreemarkerAddLabels"
     description: This is a macro for adding labels

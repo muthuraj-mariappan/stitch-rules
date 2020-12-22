@@ -1,6 +1,6 @@
 kind: Rules
 metadata:
-  namespace: tf-k8s-freemarker
+  namespace: tf-k8s-freemarker-feature-2
 spec:
   - name: "k8s.ChangeNamespaceName"
     condition:
