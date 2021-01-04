@@ -18,24 +18,3 @@ spec:
             {
               "name": "my-first-terraform-namespace-after-stitching"
             }
----            
-kind: Rules
-metadata:
-  namespace: tf-k8s-freemarker-feature-2
-spec:
-  - name: "k8s.ChangeNamespaceName"
-    condition:
-      deployedType: terraform.ExecutedModule
-      expression: "#input.getJsonNode(\"$.resource.kubernetes_namespace\") != null"
-    processor:
-      - type: freemarker
-        description: "change namespace name of tf k8s"
-        phase: PATCH
-        merge:
-          type: jsonpath
-          path: "$.resource.kubernetes_namespace.[*].metadata"
-        parameters:
-          template: |
-            {
-              "name": "my-first-terraform-namespace-after-stitching"
-            }
