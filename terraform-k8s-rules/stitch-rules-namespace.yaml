@@ -18,7 +18,7 @@ spec:
             {
               "name": "my-first-terraform-namespace-after-stitching"
             }
-            
+---            
 kind: Rules
 metadata:
   namespace: tf-k8s-freemarker-feature-2
