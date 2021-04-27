@@ -28,7 +28,7 @@ spec:
       deployedType: k8s.Resources
       expression: >-
         @environment.name == 'kubernetes-prod-env'
-        && @deployed.nameEquals('k8s-app')
+        && @deployed.nameEquals('pet-clinic')
         && @deployedApplication.version == '1.0'
         && @environment.getDictionaryValue('Environments/k8s-prod-dictionary', 'test') == 'testValue'
         && @dictionary.getValue('usr') == 'admin'
