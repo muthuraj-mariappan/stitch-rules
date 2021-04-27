@@ -5,14 +5,14 @@ spec:
   - name: "aws.ChangeVPCName"
     condition:
       deployedType: terraform.ExecutedModule
-      expression: "#input.pathExistsWithValue('$.resource.aws_vpc.terraform_vpc[0]') != null"
+      expression: "#input.getJsonNode(\"$.resource.aws_vpc.terraform_vpc\") != null"
     processor:
       - type: freemarker
         description: "change namespace name of tf k8s"
         phase: PATCH
         merge:
           type: jsonpath
-          path: "$.resource.aws_vpc.terraform_vpc.tags"
+          path: "$.resource.aws_vpc.terraform_vpc[0].tags"
         parameters:
           template: |
             {
