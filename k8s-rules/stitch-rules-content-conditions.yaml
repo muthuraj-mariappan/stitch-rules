@@ -1,0 +1,35 @@
+kind: Rules
+metadata:
+  namespace: k8s-freemarker
+spec:
+  - name: "k8s.AddLabelToService"
+    condition:
+      deployedType: k8s.Resources
+      expression: "#input.getStringValue('$.kind') == 'Service'"
+    processor:
+      - type: patch
+        description: "Adding label to Service document"
+        phase: PATCH
+        merge:
+          type: overlay
+        parameters:
+          patch:
+            - op: add
+              path: "/metadata/labels/kindService"
+              value: "service-label"
+  - name: "k8s.AddLabelToDeployment"
+    condition:
+      deployedType: k8s.Resources
+      expression: "#input.getStringValue('$.kind') == 'Deployment'"
+    processor:
+      - type: patch
+        description: "Adding label to Deployment document"
+        phase: PATCH
+        merge:
+          type: overlay
+        parameters:
+          patch:
+            - op: add
+              path: "/metadata/labels/kindDeployment"
+              value: "deployment-label"
+
