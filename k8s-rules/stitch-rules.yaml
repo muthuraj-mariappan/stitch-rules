@@ -61,4 +61,4 @@ spec:
         weight: 10
         parameters:
           application: "#{@currentDeployedApplication.name}"
-          environment: "#{@currentDeployedApplication.environment.name}"
+          environment: "#{@environment.name}"
