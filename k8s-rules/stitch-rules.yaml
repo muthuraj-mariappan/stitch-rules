@@ -5,7 +5,7 @@ spec:
   - name: "k8s.AddFreemarkerLastLabel"
     condition:
       deployedType: k8s.Resources
-      expression: "#ctx.currentDeployedApplication != null && #ctx.currentDeployedApplication.environment.name == 'kubernetes-prod-env'"
+      expression: "@environment.nameEquals('kubernetes-prod-env')"
     processor:
       - type: patch
         description: "Adding last label to kubernetes spec by using patch processor with jsonpatch replace type"
@@ -26,6 +26,12 @@ spec:
   - name: "k8s.AddFreemarkerLabels"
     condition:
       deployedType: k8s.Resources
+      expression: >-
+        @environment.name == 'kubernetes-prod-env'
+        && @deployed.nameEquals('pet-clinic')
+        && @deployedApplication.version == '1.0'
+        && @environment.getDictionaryValue('Environments/k8s-prod-dictionary', 'overrideLabels') == 'true'
+        && @dictionary.getValue('org') == 'corporate'
     processor:
       - type: freemarker
         description: "Adding label to kubernetes spec"
@@ -54,5 +60,5 @@ spec:
         description: "Adding freemarker macro"
         weight: 10
         parameters:
-          application: "#{#ctx.getCurrentDeployedApplication().getName()}"
-          environment: "#{#ctx.getCurrentDeployedApplication().getEnvironment().getName()}"
+          application: "#{@currentDeployedApplication.name}"
+          environment: "#{@environment.name}"
