@@ -16,7 +16,7 @@ spec:
           patch:
             - op: replace
               path: "/metadata/labels/overridenLabel"
-              value: "OVERRIDEN-BY-PATCH"
+              value: "OVERRIDEN-BY-STITCH"
 
 ---
 kind: Rules
@@ -39,7 +39,7 @@ spec:
           template: |
             { "metadata" : {
                "labels": {
-                 "myLabel": "myValue"
+                 "label": "label-from-stitch"
                }
               }
             }
