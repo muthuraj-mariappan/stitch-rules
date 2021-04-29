@@ -5,7 +5,7 @@ spec:
   - name: "k8s.AddLabelToService"
     condition:
       deployedType: k8s.Resources
-      expression: "#input.getStringValue('$.kind') == 'Service'"
+      expression: "@k8s.isService"
     processor:
       - type: patch
         description: "Adding label to Service document"
@@ -20,7 +20,7 @@ spec:
   - name: "k8s.AddLabelToDeployment"
     condition:
       deployedType: k8s.Resources
-      expression: "#input.getStringValue('$.kind') == 'Deployment'"
+      expression: "@k8s.isDeployment"
     processor:
       - type: patch
         description: "Adding label to Deployment document"
