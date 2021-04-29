@@ -60,5 +60,5 @@ spec:
         description: "Adding freemarker macro"
         weight: 10
         parameters:
-          application: "#{@currentDeployedApplication1.name}"
+          application: "#{@currentDeployedApplication.name} - from SpEL"
           environment: "#{@environment.name}"
